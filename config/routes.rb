@@ -7,7 +7,12 @@ Rails.application.routes.draw do
   root to: 'homes#show'
   # get '/' => 'homes#show', as: ''
 
-  resources :shouts, only: %i[create show]
+  resources :shouts, only: %i[create show] do
+    member do
+      post 'like' => 'likes#create'
+      delete 'unlike' => 'likes#destroy'
+    end
+  end
 
   resources :passwords, controller: 'clearance/passwords', only: %i[create new]
   resource :session, only: [:create]
