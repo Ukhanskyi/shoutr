@@ -5,7 +5,7 @@ class ShoutsController < ApplicationController
 
   def create
     shout = current_user.shouts.create(shout_params)
-    redirect_to root_path, redirect_options_for(shout)
+    redirect_to root_path, redirect_to_options_for(shout)
   end
 
   private
@@ -15,16 +15,23 @@ class ShoutsController < ApplicationController
   end
 
   def content_from_params
-    TextShout.new(content_params)
+    case params[:shout][:content_type]
+      when 'TextShout' then TextShout.new(text_shout_content_params)
+      when 'PhotoShout' then PhotoShout.new(photo_shout_content_params)
+    end
   end
 
-  def content_params
+  def text_shout_content_params
     params.require(:shout).require(:content).permit(:body)
   end
 
-  def redirect_options_for(shout)
+  def photo_shout_content_params
+    params.require(:shout).require(:content).permit(:image)
+  end
+
+  def redirect_to_options_for(shout)
     if shout.persisted?
-      { notice: 'Shouted successfully' }
+      { notice: 'Shouted succesfully!' }
     else
       { alert: 'Could not shout' }
     end
