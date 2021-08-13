@@ -1,24 +1,21 @@
-# README
+# Shoutr
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## This is project for deeper learning Ruby on Rails
 
-Things you may want to cover:
+### To run the project you need:
 
-* Ruby version
+  [Ruby v.2.7.2](https://rvm.io/rubies/installing)
 
-* System dependencies
+  [Yarn v.1.22.5](https://classic.yarnpkg.com/en/docs/install/#debian-stable)
 
-* Configuration
+  [Node.js v.12.22.5](https://linuxize.com/post/how-to-install-node-js-on-ubuntu-18.04/#installing-nodejs-and-npm-from-nodesource)
 
-* Database creation
+  PostgreSQL v.12
 
-* Database initialization
+  ```shell
+  sudo apt install postgresql-12
+  ```
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  Deployed applications link:
+  
+  [Shoutr application](https://stady-shoutr.herokuapp.com/)
