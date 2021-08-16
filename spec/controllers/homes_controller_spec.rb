@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe DashboardsController, type: :controller do
+RSpec.describe HomesController, type: :controller do
   render_views
 
   let!(:user) { FactoryBot.create(:user) }
