@@ -8,7 +8,7 @@ RSpec.describe DashboardsController, type: :controller do
   let!(:user) { FactoryBot.create(:user) }
 
   before do
-    sign_in
+    sign_in_as(user)
   end
 
   it 'opens GET #show' do

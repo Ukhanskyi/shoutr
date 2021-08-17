@@ -15,4 +15,11 @@
 require 'rails_helper'
 
 RSpec.describe PhotoShout, type: :model do
+  let!(:photo_shout) { FactoryBot.create(:photo_shout) }
+
+  describe 'factories' do
+    it 'has valid factory' do
+      expect(FactoryBot.create(:photo_shout)).to be_valid
+    end
+  end
 end

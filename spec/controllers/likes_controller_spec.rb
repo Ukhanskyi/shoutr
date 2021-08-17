@@ -9,7 +9,7 @@ RSpec.describe LikesController, type: :controller do
   let!(:shout) { FactoryBot.create(:shout) }
 
   before do
-    sign_in
+    sign_in_as(user)
   end
 
   describe 'POST #create' do

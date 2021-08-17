@@ -50,4 +50,12 @@ RSpec.describe User, type: :model do
       expect(user2.followers_count).to eq(1)
     end
   end
+
+  describe 'unfollow' do
+    it 'Unfollows user to user 2' do
+      user.unfollow(user2)
+
+      expect(user2.followers_count).to eq(0)
+    end
+  end
 end
