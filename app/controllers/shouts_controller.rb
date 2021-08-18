@@ -16,8 +16,8 @@ class ShoutsController < ApplicationController
 
   def content_from_params
     case params[:shout][:content_type]
-      when 'TextShout' then TextShout.new(text_shout_content_params)
-      when 'PhotoShout' then PhotoShout.new(photo_shout_content_params)
+    when 'TextShout' then TextShout.new(text_shout_content_params)
+    when 'PhotoShout' then PhotoShout.new(photo_shout_content_params)
     end
   end
 
@@ -30,10 +30,6 @@ class ShoutsController < ApplicationController
   end
 
   def redirect_to_options_for(shout)
-    if shout.persisted?
-      { notice: 'Shouted succesfully!' }
-    else
-      { alert: 'Could not shout' }
-    end
+    { notice: 'Shouted succesfully!' } if shout.persisted?
   end
 end

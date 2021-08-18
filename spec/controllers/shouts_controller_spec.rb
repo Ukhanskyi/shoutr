@@ -7,7 +7,6 @@ RSpec.describe ShoutsController, type: :controller do
 
   let!(:user)  { FactoryBot.create(:user) }
   let!(:shout) { FactoryBot.create(:shout, user: user) }
-  # let!(:photo_shout) { FactoryBot.create(:shout, :photo_shout, user: user) }
 
   before do
     sign_in_as(user)
