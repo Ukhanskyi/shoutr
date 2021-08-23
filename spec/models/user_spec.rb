@@ -50,4 +50,33 @@ RSpec.describe User, type: :model do
       expect(user2.followers_count).to eq(1)
     end
   end
+
+  describe 'unfollow' do
+    before do
+      user.follow(user2)
+    end
+
+    it 'Unfollows user to user 2' do
+      expect(user2.followers_count).to eq(1)
+      user.unfollow(user2)
+      user2.reload
+      expect(user2.followers_count).to eq(0)
+    end
+  end
+
+  describe 'like' do
+    it 'Likes shout' do
+      expect { user.like(shout) }.to change(Like, :count).by(+1)
+    end
+  end
+
+  describe 'unlike' do
+    before do
+      user.like(shout)
+    end
+
+    it 'Unlikes shout' do
+      expect { user.unlike(shout) }.to change(Like, :count).by(-1)
+    end
+  end
 end

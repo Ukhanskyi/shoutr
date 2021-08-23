@@ -13,8 +13,6 @@
 require 'rails_helper'
 
 RSpec.describe Like, type: :model do
-  let!(:like) { FactoryBot.create(:like) }
-
   describe 'factories' do
     it 'has valid factory' do
       expect(FactoryBot.create(:like)).to be_valid

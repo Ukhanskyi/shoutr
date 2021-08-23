@@ -5,12 +5,11 @@ require 'rails_helper'
 RSpec.describe ShoutsController, type: :controller do
   render_views
 
-  let!(:user)       { FactoryBot.create(:user) }
-  let!(:shout)      { FactoryBot.create(:shout, user: user) }
-  let!(:text_shout) { FactoryBot.create(:text_shout) }
+  let!(:user)  { FactoryBot.create(:user) }
+  let!(:shout) { FactoryBot.create(:shout, user: user) }
 
   before do
-    sign_in
+    sign_in_as(user)
   end
 
   describe 'GET #show' do
@@ -25,18 +24,25 @@ RSpec.describe ShoutsController, type: :controller do
   end
 
   describe 'POST #create' do
-    subject { post :create, params: params }
-
     context 'with valid params' do
-      let!(:params) { { shout: { content_type: 'TextShout', content: FactoryBot.attributes_for(:text_shout) } } }
+      let!(:text_shout_params) do
+        { shout: { content_type: 'TextShout', content: FactoryBot.attributes_for(:text_shout) } }
+      end
+      let!(:photo_shout_params) do
+        { shout: { content_type: 'PhotoShout', content: FactoryBot.attributes_for(:photo_shout) } }
+      end
 
-      it 'creates new shout' do
-        expect { subject }.to change(Shout, :count).by(1)
+      it 'creates new text shout' do
+        expect { post :create, params: text_shout_params }.to change(Shout, :count).by(1)
+      end
+
+      it 'creates new photo shout' do
+        expect { post :create, params: photo_shout_params }.to change(Shout, :count).by(1)
       end
     end
 
     context 'with invalid params' do
-      let!(:params) { { shout: { content_type: '', content: FactoryBot.attributes_for(:text_shout) } } }
+      let!(:params) { { shout: { content_type: 'TextShout' } } }
 
       it 'fails to create new shout' do
         expect { subject }.not_to change(Shout, :count)

@@ -12,8 +12,6 @@
 require 'rails_helper'
 
 RSpec.describe TextShout, type: :model do
-  let!(:text_shout) { FactoryBot.create(:text_shout) }
-
   describe 'factories' do
     it 'has valid factory' do
       expect(FactoryBot.create(:text_shout)).to be_valid
