@@ -5,9 +5,19 @@ require 'rails_helper'
 RSpec.describe SessionsController, type: :controller do
   render_views
 
-  let!(:user) { FactoryBot.create(:user, username: 'current_user') }
+  describe 'POST #create' do
+    context 'with correct params' do
+      before do
+        @user = FactoryBot.create(:user)
 
-  before do
-    sign_in_as(user)
+        post :create, params: {
+          session: { email_or_username: @user.username, password: @user.password }
+        }
+      end
+
+      it 'sets the user in the clearance session' do
+        expect(request.env[:clearance].current_user).to eq @user
+      end
+    end
   end
 end
