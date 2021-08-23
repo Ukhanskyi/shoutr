@@ -27,9 +27,13 @@
         <button class='btn btn-outline-success' type='submit'>Search</button>
       </form>
 
-      <%= user_signed_in? %>  
-
+      <ul class='navbar-nav my-2'>
+        <% if user_signed_in? %>
+          <%= link_to('Sign Out', sign_out_path, method: :delete, class: 'nav-link active lead text-dark fw-normal') %>
+        <% else %>
+          <%= link_to('Sign In', sign_in_path, class: 'nav-link active lead text-dark fw-normal') %>
+          <%= link_to('Sign Up', sign_up_path, class: 'nav-link active lead text-dark fw-normal') %>
+        <% end %>
     </div> 
-
   </div>
 </nav>

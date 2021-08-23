@@ -34,7 +34,7 @@ RSpec.describe UserHelper, type: :helper do
         sign_in_as(user)
       end
 
-      it { expect(helper.user_signed_in?).to include(sign_out_path) }
+      it { expect(helper.user_signed_in?).to be_truthy }
     end
 
     context 'without sign ined user' do
@@ -44,7 +44,7 @@ RSpec.describe UserHelper, type: :helper do
         sign_in_as(guest)
       end
 
-      it { expect(helper.user_signed_in?).to include(sign_in_path, sign_up_path) }
+      it { expect(helper.user_signed_in?).to be_falsy }
     end
   end
 end
